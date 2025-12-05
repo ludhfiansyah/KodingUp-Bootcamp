@@ -1,5 +1,5 @@
 
-# 🚀 KodingUp Frontend Web Developer Bootcamp
+# <a href="https://kodingup.com/"><img src="https://student.kodingup.com/media/app/default-logo-dark.svg" width="200" /> Frontend Web Developer Bootcamp</a>
 Repository: ku-0104
 
 This repository is used to store and document all assignments I complete during the KodingUp Frontend Web Developer Bootcamp – Cohort 1.
