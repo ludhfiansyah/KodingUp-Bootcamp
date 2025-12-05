@@ -1,0 +1,16 @@
+npm init -y
+npm install readline-sync
+
+
+=======================================
+
+const readline = require ("readline-sync")
+
+/// untuk dipakai nerima inputan
+/// contoh
+
+const nama = readline.question("Enter a name: ");
+
+console.log("Nama saya adalah" + nama);
+
+
