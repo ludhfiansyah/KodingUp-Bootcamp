@@ -45,14 +45,14 @@ Below is the list of assignments completed throughout the bootcamp:
     <td>
       Write a program that displays multiple lines of text using console.log. Then, create another program that prints a stylized pattern of the word “JAVA” using formatted spacing and characters.
     </td>
-    <td>(update link)</td>
+    <td><a href="https://github.com/kodingup-cohort-1/ku-0104/tree/main/assignments/01-logging">logging</a></td>
   </tr>
   <tr>
   <td>Numeric Operator</td>
     <td>
       This assignment focuses on practicing numeric operators in JavaScript. Students are asked to create a program that calculates and displays the result of adding numbers from 1 to 9. Through this exercise, they develop familiarity with arithmetic operations, basic syntax, and producing output using JavaScript.
     </td>
-    <td>(update link)</td>
+    <td><a href="https://github.com/kodingup-cohort-1/ku-0104/tree/main/assignments/02-numeric-operator">Numeric Operator</td>
   </tr>
 </table>
 
