@@ -3,9 +3,9 @@ const readline = require ('readline-sync');
 // Get user input
 const inputSeconds = +readline.question('Enter seconds: ');
 
-// Parse inputSeconds into minutes and second
-const minutes = Math.trunc(inputSeconds / 60);
-const second = inputSeconds % 60;
+// Parse inputSeconds into minutes and seconds
+const minutes = Math.floor(inputSeconds / 60);
+const remainingSeconds = inputSeconds % 60;
 
 // Print output
-console.log(inputSeconds +' second is '+ minutes + ' minutes and ' + second + ' seconds');
+console.log(inputSeconds +' seconds is '+ minutes + ' minutes and ' + remainingSeconds + ' seconds');
