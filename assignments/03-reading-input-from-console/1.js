@@ -9,5 +9,4 @@ const thirdNumber = +readline.question('Enter third number: ');
 const average = (firstNumber + secondNumber + thirdNumber) / 3;
 
 // Print output
-// console.log(''); REVISION -  use \n to make a new line
 console.log('\nThe average of ' + firstNumber + ', ' + secondNumber + ', ' + thirdNumber + ', ' + "is " + average); // adding \n
