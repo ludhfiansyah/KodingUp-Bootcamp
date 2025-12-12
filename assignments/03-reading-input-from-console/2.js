@@ -9,8 +9,5 @@ const inputMiles = +readline.question('Enter miles: ');
 // Convert miles to kilometers (rounded to 5 decimals)
 const kilometers = Math.round(inputMiles * KILOMETERS_PER_MILES * 100000) / 100000;
 
-// const km = Math.round(kilometers * 100000) / 100000; REVISION - prev code
 
-// Print output
-// console.log(''); - REVISION - not to use this to print new line
 console.log('\n' + inputMiles +' miles is equal to ' + kilometers +' kilometers'); // REVISION -  use \n to print new line
