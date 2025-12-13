@@ -46,7 +46,7 @@ Below is the list of assignments completed throughout the bootcamp:
   <tr>
     <th>Assignment Topic</th>
     <th>Objectives</th>
-    <th>Source Code Link</th>
+    <th>Source Code</th>
   </tr>
   <tr>
     <td>Logging</td>
