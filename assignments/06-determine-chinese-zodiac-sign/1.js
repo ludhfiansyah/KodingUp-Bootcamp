@@ -5,7 +5,7 @@ const readline = require("readline-sync");
 const CHINESE_YEAR_CYCLE = 12;
 
 // Prompt the user to enter a year and convert it to a number
-const inputYear = +readline.question("Enter a year: ");
+const Year = +readline.question("Enter a year: ");
 
 // Determines the Chinese zodiac sign based on the given year
 function determineChineseZodiac(year) {
@@ -43,5 +43,5 @@ function determineChineseZodiac(year) {
 }
 
 // Determine and display the Chinese zodiac sign
-const chineseZodiac = determineChineseZodiac(inputYear);
-console.log(`\nThe Chinese zodiac for year ${inputYear} is ${chineseZodiac}`);
+const chineseZodiac = determineChineseZodiac(Year);
+console.log(`\nThe Chinese zodiac for year ${Year} is ${chineseZodiac}`);
