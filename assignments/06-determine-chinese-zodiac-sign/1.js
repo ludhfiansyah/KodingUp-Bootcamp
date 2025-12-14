@@ -8,7 +8,7 @@ const CHINESE_YEAR_CYCLE = 12;
 const enteredYear = +readline.question("Enter a year: ");
 
 // Determines the Chinese zodiac sign based on the given year
-const chineseZodiac = year => {
+const chineseZodiac = function(year) {
   // Calculate the position in the 12-year zodiac cycle
   const zodiacIndex = year % CHINESE_YEAR_CYCLE;
   // Match the remainder to the corresponding zodiac sign
