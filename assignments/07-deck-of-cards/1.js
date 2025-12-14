@@ -5,17 +5,17 @@ const readline = require("readline-sync");
 const CARDS_PER_SUIT = 13;
 
 // Ask user to enter a card number
-const cardNumber = +readline.question("Enter card number: ");
+const enteredCardNumber = +readline.question("Enter card number: ");
 
 // Validate user input (card number input must be between 0 and 51)
-if (cardNumber < 0 || cardNumber > 51) {
+if (enteredCardNumber < 0 || enteredCardNumber > 51) {
   console.log("Invalid card number. Please enter a number between 0 and 51.");
 } else {
   // Display the card rank and suit using template literal
   console.log(
-    `\nCard number ${cardNumber}: ${cardRank(cardNumber)} of ${cardSuit(
-      cardNumber
-    )}`
+    `\nCard number ${enteredCardNumber}: ${cardRank(
+      enteredCardNumber
+    )} of ${cardSuit(enteredCardNumber)}`
   );
 }
 
