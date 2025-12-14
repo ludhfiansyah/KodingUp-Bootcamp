@@ -14,31 +14,31 @@ function determineChineseZodiac(year) {
   // Match the remainder to the corresponding zodiac sign
   switch (zodiacIndex) {
     case 0:
-      return "Monkey";
+      return "monkey";
     case 1:
-      return "Rooster";
+      return "rooster";
     case 2:
-      return "Dog";
+      return "dog";
     case 3:
-      return "Pig";
+      return "pig";
     case 4:
-      return "Rat";
+      return "rat";
     case 5:
-      return "Ox";
+      return "ox";
     case 6:
-      return "Tiger";
+      return "tiger";
     case 7:
-      return "Rabbit";
+      return "rabbit";
     case 8:
-      return "Dragon";
+      return "dragon";
     case 9:
-      return "Snake";
+      return "snake";
     case 10:
-      return "Horse";
+      return "horse";
     case 11:
-      return "Sheep";
+      return "sheep";
     default:
-      return "Unknown";
+      return "unknown";
   }
 }
 
