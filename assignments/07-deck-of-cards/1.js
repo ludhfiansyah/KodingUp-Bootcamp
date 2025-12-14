@@ -20,7 +20,7 @@ function getCardSuit(n) {
 
 // Function to determine the rank of the card
 // Modulo 13 is used because ranks repeat every 13 cards
-function fetCardRank(n) {
+function getCardRank(n) {
   let cardRank = n % CARDS_PER_SUIT;
 
   switch (cardRank) {
@@ -47,6 +47,6 @@ if (enteredCardNumber < 0 || enteredCardNumber > 51) {
 } else {
   // Display the card rank and suit using template literal
   console.log(
-    `\nCard number ${enteredCardNumber}: ${fetCardRank(enteredCardNumber)} of ${getCardSuit(enteredCardNumber)}`
+    `\nCard number ${enteredCardNumber}: ${getCardRank(enteredCardNumber)} of ${getCardSuit(enteredCardNumber)}`
   );
 }
