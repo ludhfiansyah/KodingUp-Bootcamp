@@ -43,5 +43,4 @@ const chineseZodiac = year => {
 }
 
 // Determine and display the Chinese zodiac sign
-// const chineseZodiac = determineChineseZodiac(enteredYear);
 console.log(`\nThe Chinese zodiac for year ${enteredYear} is ${chineseZodiac(enteredYear)}`);
