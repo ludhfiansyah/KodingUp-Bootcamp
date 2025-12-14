@@ -13,9 +13,7 @@ if (enteredCardNumber < 0 || enteredCardNumber > 51) {
 } else {
   // Display the card rank and suit using template literal
   console.log(
-    `\nCard number ${enteredCardNumber}: ${cardRank(
-      enteredCardNumber
-    )} of ${cardSuit(enteredCardNumber)}`
+    `\nCard number ${enteredCardNumber}: ${cardRank(enteredCardNumber)} of ${cardSuit(enteredCardNumber)}`
   );
 }
 
