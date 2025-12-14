@@ -6,12 +6,12 @@ const CARDS_PER_SUIT = 13;
 
 // Function to determine the suit of the card
 // Each suit contains 13 cards
-const determineCardSuit = function(number) {
-  if (number >= 0 && number <= 12) {
+const determineCardSuit = function(n) {
+  if (n >= 0 && n <= 12) {
     return "Spades";
-  } else if (number >= 13 && number <= 25) {
+  } else if (n >= 13 && n <= 25) {
     return "Hearts";
-  } else if (number >= 26 && number <= 38) {
+  } else if (n >= 26 && n <= 38) {
     return "Diamonds";
   } else {
     return "Clubs";
@@ -20,8 +20,8 @@ const determineCardSuit = function(number) {
 
 // Function to determine the rank of the card
 // Modulo 13 is used because ranks repeat every 13 cards
-const determineCardRank = function(number) {
-  let cardRank = number % CARDS_PER_SUIT;
+const determineCardRank = function(n) {
+  let cardRank = n % CARDS_PER_SUIT;
 
   switch (cardRank) {
     case 0:
