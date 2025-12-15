@@ -32,7 +32,7 @@ const getChineseZodiac = function(year) {
     case 2:
       return ZODIAC_DOG;
     case 3:
-      return ZODIAC_DOG;
+      return ZODIAC_PIG;
     case 4:
       return ZODIAC_RAT;
     case 5:
