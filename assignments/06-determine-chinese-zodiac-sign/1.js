@@ -1,8 +1,20 @@
 // Import readline-sync to read input from the console
 const readline = require("readline-sync");
 
-// Total number of animals in the Chinese zodiac cycle
+// Defining compile time constant
 const CHINESE_YEAR_CYCLE = 12;
+const ZODIAC_MONKEY = 'monkey';
+const ZODIAC_ROOSTER = 'rooster';
+const ZODIAC_DOG = 'dog';
+const ZODIAC_PIG = 'pig';
+const ZODIAC_RAT = 'rat';
+const ZODIAC_OX = 'ox';
+const ZODIAC_TIGER = 'tiger';
+const ZODIAC_RABBIT = 'rabbit';
+const ZODIAC_DRAGON = 'dragon';
+const ZODIAC_SNAKE = 'snake';
+const ZODIAC_HORSE = 'horse';
+const ZODIAC_SHEEP = 'sheep';
 
 // Prompt the user to enter a year and convert it to a number
 const enteredYear = +readline.question("Enter a year: ");
@@ -14,29 +26,29 @@ const getChineseZodiac = function(year) {
   // Match the remainder to the corresponding zodiac sign
   switch (zodiacIndex) {
     case 0:
-      return "monkey";
+      return ZODIAC_MONKEY;
     case 1:
-      return "rooster";
+      return ZODIAC_ROOSTER;
     case 2:
-      return "dog";
+      return ZODIAC_DOG;
     case 3:
-      return "pig";
+      return ZODIAC_DOG;
     case 4:
-      return "rat";
+      return ZODIAC_RAT;
     case 5:
-      return "ox";
+      return ZODIAC_OX;
     case 6:
-      return "tiger";
+      return ZODIAC_TIGER;
     case 7:
-      return "rabbit";
+      return ZODIAC_RABBIT;
     case 8:
-      return "dragon";
+      return ZODIAC_DRAGON;
     case 9:
-      return "snake";
+      return ZODIAC_SNAKE;
     case 10:
-      return "horse";
+      return ZODIAC_HORSE;
     case 11:
-      return "sheep";
+      return ZODIAC_SHEEP;
     default:
       return "unknown";
   }
