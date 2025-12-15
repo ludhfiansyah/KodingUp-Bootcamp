@@ -39,10 +39,7 @@ const getChineseZodiacByYear = function (year) {
   }
 }
 
-// Keep the program running until user presses Ctrl + C
-while (true) {
-  // Prompt the user to enter a year and convert it to a number
-  const enteredYear = +readline.question('Enter a year: ');
-  // Determine and display the Chinese zodiac sign
-  console.log(`\nThe Chinese zodiac for year ${enteredYear} is ${getChineseZodiacByYear(enteredYear)}\n`);
-}
+// Prompt the user to enter a year and convert it to a number
+const enteredYear = +readline.question('Enter a year: ');
+// Determine and display the Chinese zodiac sign
+console.log(`\nThe Chinese zodiac for year ${enteredYear} is ${getChineseZodiacByYear(enteredYear)}\n`);
