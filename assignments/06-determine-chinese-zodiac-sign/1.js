@@ -16,11 +16,8 @@ const ZODIAC_SNAKE = 'snake';
 const ZODIAC_HORSE = 'horse';
 const ZODIAC_SHEEP = 'sheep';
 
-// Prompt the user to enter a year and convert it to a number
-const enteredYear = +readline.question("Enter a year: ");
-
 // Determines the Chinese zodiac sign based on the given year
-const getChineseZodiac = function(year) {
+const getChineseZodiac = function (year) {
   // Calculate the position in the 12-year zodiac cycle
   const zodiacIndex = year % CHINESE_YEAR_CYCLE;
   // Match the remainder to the corresponding zodiac sign
@@ -54,5 +51,10 @@ const getChineseZodiac = function(year) {
   }
 }
 
-// Determine and display the Chinese zodiac sign
-console.log(`\nThe Chinese zodiac for year ${enteredYear} is ${getChineseZodiac(enteredYear)}`);
+// Keep the program running until user presses Ctrl + C
+while (true) {
+  // Prompt the user to enter a year and convert it to a number
+  const enteredYear = +readline.question("\nEnter a year: ");
+  // Determine and display the Chinese zodiac sign
+  console.log(`\nThe Chinese zodiac for year ${enteredYear} is ${getChineseZodiac(enteredYear)}\n`);
+}
