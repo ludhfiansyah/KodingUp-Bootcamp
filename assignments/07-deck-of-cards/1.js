@@ -5,8 +5,8 @@ const readline = require("readline-sync");
 const CARDS_PER_SUIT = 13;
 const LOWEST_CARD = 0;
 const HIGHEST_CARD = 51;
-const MAX_HEARTS_SUIT = 26;
-const MAX_DIAMONDS_SUIT = 39;
+const MIN_DIAMONDS_SUIT = 26;
+const MIN_CLUBS_SUIT = 39;
 const ACE = 'Ace';
 const JACK = 'Jack';
 const QUEEN = 'Queen';
@@ -41,9 +41,9 @@ function getCardRank(num) {
 function getCardSuit(num) {
   if (num < CARDS_PER_SUIT) {
     return SPADES;
-  } else if (num < MAX_HEARTS_SUIT) {
+  } else if (num < MIN_DIAMONDS_SUIT) {
     return HEARTS;
-  } else if (num < MAX_DIAMONDS_SUIT) {
+  } else if (num < MIN_CLUBS_SUIT) {
     return DIAMONDS;
   } else {
     return CLUBS;
