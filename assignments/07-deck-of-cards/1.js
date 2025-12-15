@@ -59,7 +59,5 @@ if (enteredCardNumber < LOWEST_CARD || enteredCardNumber > HIGHEST_CARD) {
   console.log("Invalid card number. Please enter a number between 0 and 51.");
 } else {
   // Display the card rank and suit using template literal
-  console.log(
-    `\nCard number ${enteredCardNumber}: ${getCardRank(enteredCardNumber)} of ${getCardSuit(enteredCardNumber)}`
-  );
+  console.log(`\nCard number ${enteredCardNumber}: ${getCardRank(enteredCardNumber)} of ${getCardSuit(enteredCardNumber)}`);
 }
