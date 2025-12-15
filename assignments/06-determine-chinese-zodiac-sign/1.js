@@ -15,6 +15,7 @@ const ZODIAC_DRAGON = 'dragon';
 const ZODIAC_SNAKE = 'snake';
 const ZODIAC_HORSE = 'horse';
 const ZODIAC_SHEEP = 'sheep';
+const UNKNOWN = 'unknown'
 
 // Determines the Chinese zodiac sign based on the given year
 const getChineseZodiac = function (year) {
@@ -47,7 +48,7 @@ const getChineseZodiac = function (year) {
     case 11:
       return ZODIAC_SHEEP;
     default:
-      return "unknown";
+      return UNKNOWN;
   }
 }
 
