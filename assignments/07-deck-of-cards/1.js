@@ -49,13 +49,12 @@ function getCardSuit(num) {
 // Loop until a valid card number is entered
 do {
   const enteredCardNumber = +readline.question('Enter card number: ');
-  checkNumber = enteredCardNumber;
 
   // Validate input range and type
   if (
     enteredCardNumber < LOWEST_CARD ||
     enteredCardNumber > HIGHEST_CARD ||
-    checkNumber !== checkNumber
+    enteredCardNumber !== enteredCardNumber
   ) {
     console.log(
       `\nInvalid card number. Please enter a number between ${LOWEST_CARD} and ${HIGHEST_CARD}.\n\n`
@@ -65,4 +64,4 @@ do {
       `\nCard number ${enteredCardNumber}: ${getCardRank(enteredCardNumber)} of ${getCardSuit(enteredCardNumber)}`
     );
   }
-} while (checkNumber > HIGHEST_CARD || checkNumber !== checkNumber);
+} while (enteredCardNumber > HIGHEST_CARD || enteredCardNumber !== enteredCardNumber);
