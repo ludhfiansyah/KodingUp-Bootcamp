@@ -51,12 +51,14 @@ do {
   // Ask user to enter a card number
   const enteredCardNumber = +readline.question('Enter card number: ');
 
-  // Validate user input (card number input must be between 0 and 51)
+  // Validate user input 
+  // (card number input must be between 0 and 51)
+  // (not allowed to input any string)
   checkNumber = enteredCardNumber;
-  if (enteredCardNumber < LOWEST_CARD || enteredCardNumber > HIGHEST_CARD) {
+  if (enteredCardNumber < LOWEST_CARD || enteredCardNumber > HIGHEST_CARD || checkNumber !== checkNumber) {
     console.log(`\nInvalid card number. Please enter a card number between ${LOWEST_CARD} and ${HIGHEST_CARD}.\n\n`);
   } else {
     // Display the card rank and card suit using template literal
     console.log(`\nCard number ${enteredCardNumber}: ${getCardRank(enteredCardNumber)} of ${getCardSuit(enteredCardNumber)}`);
   }
-} while (checkNumber > HIGHEST_CARD);
+} while (checkNumber > HIGHEST_CARD || checkNumber !== checkNumber);
