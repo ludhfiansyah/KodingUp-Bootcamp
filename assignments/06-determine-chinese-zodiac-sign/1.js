@@ -39,7 +39,31 @@ const getChineseZodiacByYear = function (year) {
   }
 }
 
-// Prompt the user to enter a year and convert it to a number
-const enteredYear = +readline.question('Enter a year: ');
-// Determine and display the Chinese zodiac sign
-console.log(`\nThe Chinese zodiac for year ${enteredYear} is ${getChineseZodiacByYear(enteredYear)}\n`);
+// Main program loop
+let runProgram = true;
+
+while (runProgram) {
+  // Prompt the user to enter a year
+  const enteredYear = +readline.question('\nEnter a year: ');
+  // Display the Chinese zodiac sign
+  console.log(`\nThe Chinese zodiac for year ${enteredYear} is ${getChineseZodiacByYear(enteredYear)}\n`);
+
+  // Ask user whether they want to try again
+  let userChoice;
+
+  do {
+    userChoice = readline.question('Try again? y/n: ');
+
+    if (userChoice === 'y' || userChoice === 'Y') {
+      // Continue the outer loop
+      break;
+    } else if (userChoice === 'n' || userChoice === 'N') {
+      // Exit the program
+      runProgram = false;
+      break;
+    } else {
+      // Invalid input → ask again
+      console.log('Invalid input. Please enter y or n.\n');
+    }
+  } while (true);
+}
