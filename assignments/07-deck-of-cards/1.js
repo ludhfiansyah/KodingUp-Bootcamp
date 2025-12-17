@@ -8,8 +8,6 @@ const HIGHEST_CARD = 51;
 const MIN_DIAMONDS_SUIT = 26;
 const MIN_CLUBS_SUIT = 39;
 
-let checkNumber;
-
 // Function to determine the rank of the card
 // Modulo 13 is used because ranks repeat every 13 cards
 function getCardRank(num) {
@@ -47,6 +45,7 @@ function getCardSuit(num) {
 }
 
 // Loop until a valid card number is entered
+let runProgram;
 do {
   const enteredCardNumber = +readline.question('Enter card number: ');
 
@@ -54,14 +53,17 @@ do {
   if (
     enteredCardNumber < LOWEST_CARD ||
     enteredCardNumber > HIGHEST_CARD ||
-    enteredCardNumber !== enteredCardNumber
+    enteredCardNumber !== enteredCardNumber ||
+    !enteredCardNumber
   ) {
     console.log(
       `\nInvalid card number. Please enter a number between ${LOWEST_CARD} and ${HIGHEST_CARD}.\n\n`
     );
+    runProgram = true;
   } else {
     console.log(
       `\nCard number ${enteredCardNumber}: ${getCardRank(enteredCardNumber)} of ${getCardSuit(enteredCardNumber)}`
     );
+    runProgram = false
   }
-} while (enteredCardNumber > HIGHEST_CARD || enteredCardNumber !== enteredCardNumber);
+} while (runProgram);
