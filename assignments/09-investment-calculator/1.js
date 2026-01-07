@@ -33,7 +33,7 @@ function getInvestmentDurationInMonth(year) {
  * @param {number} duration - Investment duration in months.
  * @returns {void}
  */
-function printEachYearInvestmentValue(value, rate, duration) {
+function printYearlyInvestmentValue(value, rate, duration) {
   let year = 0;
   let investmentValue = value;
 
@@ -62,7 +62,7 @@ const investmentDurationInMonth = getInvestmentDurationInMonth(
 console.log();
 
 // Print output
-printEachYearInvestmentValue(
+printYearlyInvestmentValue(
   investmentAmount,
   interestRateInMonth,
   investmentDurationInMonth
