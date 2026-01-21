@@ -24,8 +24,8 @@ function equals(arr1, arr2) {
 // ----- MAIN PROGRAM -----
 const inputList1 = readline.question("Enter list1: ");
 const inputList2 = readline.question("Enter list2: ");
-const List1 = inputList1.trim().split(/\s+/);
-const List2 = inputList2.trim().split(/\s+/);
+const List1 = inputList1.split(' ');
+const List2 = inputList2.split(' ');
 
 if (equals(List1, List2)) {
   console.log("Two lists are strictly identical");

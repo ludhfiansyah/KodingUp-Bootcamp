@@ -80,7 +80,7 @@ do {
   const input = readline.question("Enter the integers between 1 and 100: ");
 
   // Use split() but more robust for multiple spaces/tabs
-  const parts = input.trim().split(/\s+/);
+  const parts = input.split(' ');
 
   // If user just presses enter, parts becomes [""] -> +"" = 0 (invalid), so it will re-ask.
   const converted = convertToNumbers(parts);
