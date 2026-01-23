@@ -81,7 +81,7 @@ outer: do {
 // without using the built-in Array.prototype.forEach().
 // It finds the largest number in the matrix and its location (row, col),
 // then passes the result to a callback function.
-table.forEach = function (callbackFn) {
+table.findLargestNumber = function (callbackFn) {
   let foundNumber; // stores the current largest number found
   let indexX; // row index of the largest number
   let indexY; // column index of the largest number
@@ -106,7 +106,7 @@ table.forEach = function (callbackFn) {
 // ---------------------------------------------
 // STEP 4: Print the result
 // ---------------------------------------------
-table.forEach((largestNumber, row, col) => {
+table.findLargestNumber((largestNumber, row, col) => {
   console.log(
     `The location of the largest element is ${largestNumber} at (${row}, ${col})`,
   );
