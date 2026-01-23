@@ -1,10 +1,12 @@
 const readline = require('readline-sync');
 
-// ---------------------------------------------
-// STEP 1: Read the number of rows and columns
-// ---------------------------------------------
-// The program will keep asking until the user enters exactly 2 numeric values.
-// Example valid input: "3 4"
+/*
+---------------------------------------------
+STEP 1: Read the number of rows and columns
+---------------------------------------------
+The program will keep asking until the user enters exactly 2 numeric values.
+Example valid input: "3 4"
+*/
 let rowInput;
 let colInput;
 let repeatInput1;
@@ -17,9 +19,11 @@ do {
   // Split input into two parts: [rows, cols]
   const parts = rowColumnInput.split(' ');
 
-  // Input is invalid if:
-  // - user does not provide exactly 2 values
-  // - either value is not a number
+  /*
+  Input is invalid if:
+  - user does not provide exactly 2 values
+  - either value is not a number
+  */
   repeatInput1 = parts.length !== 2 || isNaN(parts[0]) || isNaN(parts[1]);
 
   if (repeatInput1) {
@@ -31,11 +35,13 @@ do {
   }
 } while (repeatInput1);
 
-// ---------------------------------------------
-// STEP 2: Read the 2D array (matrix) values
-// ---------------------------------------------
-// We will store user input into a 2D array called "table".
-// If any row input is invalid, we restart the entire matrix input process.
+/*
+---------------------------------------------
+STEP 2: Read the 2D array (matrix) values
+---------------------------------------------
+We will store user input into a 2D array called "table".
+If any row input is invalid, we restart the entire matrix input process.
+*/
 const table = [];
 let repeatInput2;
 
@@ -74,13 +80,13 @@ outer: do {
   }
 } while (repeatInput2);
 
-// ---------------------------------------------
-// STEP 3: Custom forEach() for 2D array processing
-// ---------------------------------------------
-// This custom forEach method is used to practice iteration logic
-// without using the built-in Array.prototype.forEach().
-// It finds the largest number in the matrix and its location (row, col),
-// then passes the result to a callback function.
+/*
+---------------------------------------------
+STEP 3: Custom forEach() for 2D array processing
+---------------------------------------------
+This custom forEach method is used to practice iteration logic without using the built-in Array.prototype.forEach().
+It finds the largest number in the matrix and its location (row, col), then passes the result to a callback function.
+*/
 table.findLargestNumber = function (callbackFn) {
   let foundNumber; // stores the current largest number found
   let indexX; // row index of the largest number
@@ -103,9 +109,11 @@ table.findLargestNumber = function (callbackFn) {
   callbackFn(foundNumber, indexX, indexY);
 };
 
-// ---------------------------------------------
-// STEP 4: Print the result
-// ---------------------------------------------
+/*
+---------------------------------------------
+STEP 4: Print the result
+---------------------------------------------
+*/
 table.findLargestNumber((largestNumber, row, col) => {
   console.log(
     `The location of the largest element is ${largestNumber} at (${row}, ${col})`,
