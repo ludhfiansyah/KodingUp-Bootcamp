@@ -93,7 +93,7 @@ let numbers;
 do {
   const input = readline.question('Enter the integers between 1 and 100: ');
 
-  // Split user input by whitespace (supports multiple spaces/tabs)
+  // Split user input by whitespace
   const parts = input.split(' ');
 
   // Convert values to numbers before validating
