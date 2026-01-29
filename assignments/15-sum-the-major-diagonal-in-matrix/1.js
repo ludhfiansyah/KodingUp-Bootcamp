@@ -1,45 +1,74 @@
 const readline = require('readline-sync');
 
-const MAX_MATRIX_SIZE = 4;
+const MATRIX_SIZE = 4;
 
+/**
+ * Collect a 4x4 matrix from user input.
+ *
+ * Rules:
+ * - Each row must contain exactly MATRIX_SIZE values.
+ * - All values must be valid numbers.
+ * - If any row is invalid, restart the input from row 0.
+ *
+ * @returns {number[][]} 4-by-4 matrix (2D array).
+ */
 function collectMatrix() {
   const matrix = [];
-  let row = 0;
+  let rowIndex = 0;
 
-  outer: do {
-    let value = [];
+  while (rowIndex < MATRIX_SIZE) {
+    // Read one row input and split into parts
+    const parts = readline.question('').split(' ');
 
-    let inputStr = readline.question('').split(' ');
-
-    if (inputStr.length !== MAX_MATRIX_SIZE) {
+    // --- Validation: must have exactly 4 values ---
+    if (parts.length !== MATRIX_SIZE) {
       console.log('Invalid input. Please enter 4 numbers per row.\n');
-      row = 0;
-      continue outer;
+      rowIndex = 0; // restart from the first row
+      continue;
     }
 
-    for (let str of inputStr) {
-      str = +str;
-      if (Number.isNaN(str)) {
+    // Convert parts to numbers + validate
+    const row = [];
+    let isRowValid = true;
+
+    for (let i = 0; i < parts.length; i++) {
+      const n = +parts[i];
+
+      if (Number.isNaN(n)) {
         console.log('Invalid input. Please enter only number\n');
-        row = 0;
-        continue outer;
+        rowIndex = 0; // restart from the first row
+        isRowValid = false;
+        break; // stop processing this row
       }
-      value.push(str);
+
+      row.push(n);
     }
 
-    matrix[row] = value;
-    row++;
-  } while (row < MAX_MATRIX_SIZE);
+    // If the row was invalid, ask the user to re-enter from row 0
+    if (!isRowValid) continue;
+
+    // Save the validated row and move to next row
+    matrix[rowIndex] = row;
+    rowIndex++;
+  }
 
   return matrix;
 }
 
+/**
+ * Sum the major diagonal of a square matrix:
+ * m[0][0] + m[1][1] + ... + m[n-1][n-1]
+ *
+ * @param {number[][]} m - Square matrix.
+ * @returns {number} Sum of the major diagonal elements.
+ */
 function sumMajorDiagonal(m) {
-  // Your implementation here
   let sum = 0;
+
   for (let i = 0; i < m.length; i++) {
     sum += m[i][i];
   }
+
   return sum;
 }
 
