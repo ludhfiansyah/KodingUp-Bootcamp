@@ -28,6 +28,10 @@ function collectMatrix() {
       continue outer; // Restart the entire input process
     }
 
+    // Convert parts to numbers + validate
+    const row = [];
+    let isRowValid = true;
+
     // Convert each string to a number and validate
     for (let str of inputStr) {
       str = +str; // Convert string -> number
