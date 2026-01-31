@@ -1,205 +1,172 @@
 const readline = require('readline-sync');
 
+const GRID_SIZE = 3;
 const EMPTY = ' ';
-const SIZE = 3;
 
 /**
- * Creates a game state object.
- * @returns {{ board: string[][], currentPlayer: "X"|"O", size: number }}
+ * Creates a 3x3 tic-tac-toe board filled with EMPTY spaces.
+ * @returns {string[][]}
  */
-function createGame() {
-  const board = [];
-  for (let r = 0; r < SIZE; r++) {
+function createGrid(size) {
+  const grid = [];
+  for (let row = 0; row < size; row++) {
     const row = [];
-    for (let c = 0; c < SIZE; c++) row.push(EMPTY);
-    board.push(row);
+    for (let col = 0; col < size; col++) {
+      row.push(EMPTY);
+    }
+    grid.push(row);
   }
-
-  return {
-    board,
-    currentPlayer: 'X',
-    size: SIZE,
-  };
+  return grid;
 }
 
 /**
- * Prints the current board.
- * @param {{ board: string[][], size: number }} game
+ * Prints the latest grid to the console
+ * @param {string[][]} grid
+ * @returns {void}
  */
-function printBoard(game) {
-  const { board, size } = game;
-
-  for (let r = 0; r < size; r++) {
+function printGrid(grid) {
+  for (let row = 0; row < grid.length; row++) {
     console.log('-------------');
-    let line = '|';
-    for (let c = 0; c < size; c++) {
-      line += ` ${board[r][c]} |`;
+    let separator = '|';
+    for (let col = 0; col < grid.length; col++) {
+      separator += ` ${grid[row][col]} |`;
     }
-    console.log(line);
+    console.log(separator);
   }
   console.log('-------------');
 }
 
 /**
- * Checks whether an index is valid for the board size.
+ * Checks if a value is an integer in range 0..2.
  * @param {number} n
- * @param {number} size
  * @returns {boolean}
  */
-function isValidIndex(n, size) {
-  return Number.isInteger(n) && n >= 0 && n < size;
+function isValidIndex(n) {
+  return Number.isInteger(n) && n >= 0 && n < GRID_SIZE;
 }
 
-/**
- * Prompts row/column input (DRY).
- * @param {"row"|"column"} type
- * @param {"X"|"O"} player
- * @param {number} size
- * @returns {number}
- */
-function askIndex(type, player, size) {
+function askRow(player) {
   while (true) {
-    const input = +readline.question(
-      `Enter a ${type} (0, 1, or 2) for player ${player}: `,
+    const rowInput = +readline.question(
+      'Enter a row (0, 1, or 2) for player ' + player + ' : ',
     );
-
-    if (!isValidIndex(input, size)) {
-      console.log(`Invalid ${type}. Please enter 0, 1, or 2.\n`);
+    if (!isValidIndex(rowInput)) {
+      console.log('Oops! You put a wrong row index. Try again!');
       continue;
+    } else {
+      return rowInput;
     }
-
-    return input;
   }
 }
 
-/**
- * Creates all winning lines (array of coordinate arrays).
- * Example line: [ [0,0], [0,1], [0,2] ]
- * @param {number} size
- * @returns {number[][][]}
- */
-function getWinningLines(size) {
-  const lines = [];
-
-  // Rows
-  for (let r = 0; r < size; r++) {
-    const line = [];
-    for (let c = 0; c < size; c++) line.push([r, c]);
-    lines.push(line);
+function askCol(player) {
+  while (true) {
+    const colInput = +readline.question(
+      'Enter a column (0, 1, or 2) for player ' + player + ' : ',
+    );
+    if (!isValidIndex(colInput)) {
+      console.log('Oops! You put a wrong column index. Try again!');
+      continue;
+    } else {
+      return colInput;
+    }
   }
-
-  // Columns
-  for (let c = 0; c < size; c++) {
-    const line = [];
-    for (let r = 0; r < size; r++) line.push([r, c]);
-    lines.push(line);
-  }
-
-  // Diagonal: top-left -> bottom-right
-  const diag1 = [];
-  for (let i = 0; i < size; i++) diag1.push([i, i]);
-  lines.push(diag1);
-
-  // Diagonal: top-right -> bottom-left
-  const diag2 = [];
-  for (let i = 0; i < size; i++) diag2.push([i, size - 1 - i]);
-  lines.push(diag2);
-
-  return lines;
 }
 
-/**
- * Returns true if the player matches any winning line.
- * @param {{ board: string[][], size: number }} game
- * @param {"X"|"O"} player
- * @param {number[][][]} lines
- * @returns {boolean}
- */
-function hasWon(game, player, lines) {
-  const { board } = game;
+function playGame(grid, player) {
+  while (true) {
+    const row = askRow(player);
+    const col = askCol(player);
 
-  for (const line of lines) {
-    let allMatch = true;
+    if (grid[row][col] !== EMPTY) {
+      console.log('\nSorry mate!, the cell is occupied. Try other cell! ');
+      continue;
+    } else {
+      return { row, col };
+    }
+  }
+}
 
-    for (const [r, c] of line) {
-      if (board[r][c] !== player) {
-        allMatch = false;
+function isPlayerWon(grid, player) {
+  // check horizontal match
+  for (let row = 0; row < GRID_SIZE; row++) {
+    let rowMatch = true;
+    for (let col = 0; col < GRID_SIZE; col++) {
+      if (grid[row][col] !== player) {
+        rowMatch = false;
         break;
       }
     }
 
-    if (allMatch) return true;
+    if (rowMatch) return true;
   }
 
-  return false;
+  //check vertical match
+  for (let col = 0; col < GRID_SIZE; col++) {
+    let colMatch = true;
+    for (let row = 0; row < GRID_SIZE; row++) {
+      if (grid[row][col] !== player) {
+        colMatch = false;
+        break;
+      }
+    }
+
+    if (colMatch) return true;
+  }
+
+  //check diagonal1 match
+  let diagonal1Match = true;
+  for (let row = 0; row < GRID_SIZE; row++) {
+    if (grid[row][row] !== player) {
+      diagonal1Match = false;
+      break;
+    }
+  }
+  if (diagonal1Match) return true;
+
+  //check diagonal2 match
+  let diagonal2Match = true;
+  for (let row = 0; row < GRID_SIZE; row++) {
+    if (grid[row][GRID_SIZE - 1 - row] !== player) {
+      diagonal2Match = false;
+      break;
+    }
+  }
+  if (diagonal2Match) return true;
 }
 
-/**
- * Returns true if there are no empty cells.
- * @param {{ board: string[][], size: number }} game
- * @returns {boolean}
- */
-function isDraw(game) {
-  const { board, size } = game;
-
-  for (let r = 0; r < size; r++) {
-    for (let c = 0; c < size; c++) {
-      if (board[r][c] === EMPTY) return false;
+function isPlayerDraw(grid) {
+  for (let row = 0; row < GRID_SIZE; row++) {
+    for (let col = 0; col < GRID_SIZE; col++) {
+      if (grid[row][col] === EMPTY) return false;
     }
   }
   return true;
 }
 
-/**
- * Switch current player in the game object.
- * @param {{ currentPlayer: "X"|"O" }} game
- */
-function switchPlayer(game) {
-  game.currentPlayer = game.currentPlayer === 'X' ? 'O' : 'X';
-}
+// ------------------ MAIN PROGRAM ----------------
 
-/**
- * Places a move if the cell is empty (keeps asking until valid).
- * @param {{ board: string[][], currentPlayer: "X"|"O", size: number }} game
- */
-function takeTurn(game) {
-  const { board, currentPlayer, size } = game;
+const boardGame = createGrid(GRID_SIZE);
+let player = 'X';
 
-  while (true) {
-    const row = askIndex('row', currentPlayer, size);
-    const col = askIndex('column', currentPlayer, size);
-
-    if (board[row][col] !== EMPTY) {
-      console.log('That cell is already taken. Try again.\n');
-      continue;
-    }
-
-    board[row][col] = currentPlayer;
-    break;
-  }
-}
-
-// -------------------- MAIN --------------------
-const game = createGame();
-const winningLines = getWinningLines(game.size);
-
-printBoard(game);
+printGrid(boardGame);
 
 while (true) {
-  takeTurn(game);
+  const play = playGame(boardGame, player);
+  boardGame[play.row][play.col] = player;
 
   console.log('');
-  printBoard(game);
+  printGrid(boardGame);
 
-  if (hasWon(game, game.currentPlayer, winningLines)) {
-    console.log(`Player ${game.currentPlayer} won`);
+  if (isPlayerWon(boardGame, player)) {
+    console.log(`Player ${player} won`);
     break;
   }
 
-  if (isDraw(game)) {
-    console.log('Draw');
+  if (isPlayerDraw(boardGame)) {
+    console.log('You guys got a Draw');
     break;
   }
 
-  switchPlayer(game);
+  player = player === 'X' ? 'O' : 'X';
 }
