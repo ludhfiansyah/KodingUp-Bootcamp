@@ -15,17 +15,6 @@ const StudentStatus = {
 Object.freeze(StudentStatus);
 
 /**
- * A valid student status value.
- *
- * @typedef {(
- *   StudentStatus.FRESHMAN |
- *   StudentStatus.SOPHOMORE |
- *   StudentStatus.JUNIOR |
- *   StudentStatus.SENIOR
- * )} StudentStatusValue
- */
-
-/**
  * Base type in the inheritance tree.
  *
  * @constructor
