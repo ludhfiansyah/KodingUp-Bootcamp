@@ -15,6 +15,17 @@ const StudentStatus = {
 Object.freeze(StudentStatus);
 
 /**
+ * A valid student status value (union of StudentStatus values).
+ *
+ * @typedef {(
+ *   StudentStatus.FRESHMAN |
+ *   StudentStatus.SOPHOMORE |
+ *   StudentStatus.JUNIOR |
+ *   StudentStatus.SENIOR
+ * )} StudentStatusValue
+ */
+
+/**
  * Base type in the inheritance tree.
  *
  * @constructor
@@ -44,14 +55,14 @@ function Person(name, address, phoneNumber, email) {
  * @returns {string} The formatted representation.
  */
 Person.prototype.toString = function () {
-  return `\`${this.constructor.name}: ${this.name}\``;
+  return `${this.constructor.name}: ${this.name}`;
 };
 
 /**
  * Represents a student (child of Person).
  *
  * @constructor
- * @extends Person
+ * @augments Person
  * @param {string} name - Student's name.
  * @param {string} address - Student's address.
  * @param {string} phoneNumber - Student's phone number.
@@ -67,7 +78,6 @@ function Student(name, address, phoneNumber, email, status) {
 
 /**
  * Inheritance: Student --> Person
- * @type {Person}
  */
 Student.prototype = Object.create(Person.prototype, {
   constructor: {
@@ -87,14 +97,14 @@ Student.prototype = Object.create(Person.prototype, {
  * @returns {string} The formatted representation.
  */
 Student.prototype.toString = function () {
-  return `\`${this.constructor.name}: ${this.name}\``;
+  return `${this.constructor.name}: ${this.name}`;
 };
 
 /**
  * Represents an employee (child of Person).
  *
  * @constructor
- * @extends Person
+ * @augments Person
  * @param {string} name - Employee's name.
  * @param {string} address - Employee's address.
  * @param {string} phoneNumber - Employee's phone number.
@@ -113,7 +123,6 @@ function Employee(name, address, phoneNumber, email, company, salary) {
 
 /**
  * Inheritance: Employee --> Person
- * @type {Person}
  */
 Employee.prototype = Object.create(Person.prototype, {
   constructor: {
@@ -133,14 +142,14 @@ Employee.prototype = Object.create(Person.prototype, {
  * @returns {string} The formatted representation.
  */
 Employee.prototype.toString = function () {
-  return `\`${this.constructor.name}: ${this.name}\``;
+  return `${this.constructor.name}: ${this.name}`;
 };
 
 /**
  * Represents a faculty member (child of Employee).
  *
  * @constructor
- * @extends Employee
+ * @augments Employee
  * @param {string} name - Faculty name.
  * @param {string} address - Faculty address.
  * @param {string} phoneNumber - Faculty phone number.
@@ -170,7 +179,6 @@ function Faculty(
 
 /**
  * Inheritance: Faculty --> Employee
- * @type {Employee}
  */
 Faculty.prototype = Object.create(Employee.prototype, {
   constructor: {
@@ -190,14 +198,14 @@ Faculty.prototype = Object.create(Employee.prototype, {
  * @returns {string} The formatted representation.
  */
 Faculty.prototype.toString = function () {
-  return `\`${this.constructor.name}: ${this.name}\``;
+  return `${this.constructor.name}: ${this.name}`;
 };
 
 /**
  * Represents a staff member (child of Employee).
  *
  * @constructor
- * @extends Employee
+ * @augments Employee
  * @param {string} name - Person name.
  * @param {string} address - Person address.
  * @param {string} phoneNumber - Person phone number.
@@ -215,7 +223,6 @@ function Staff(name, address, phoneNumber, email, company, salary, title) {
 
 /**
  * Inheritance: Staff --> Employee
- * @type {Employee}
  */
 Staff.prototype = Object.create(Employee.prototype, {
   constructor: {
@@ -235,5 +242,5 @@ Staff.prototype = Object.create(Employee.prototype, {
  * @returns {string} The formatted representation.
  */
 Staff.prototype.toString = function () {
-  return `\`${this.constructor.name}: ${this.name}\``;
+  return `${this.constructor.name}: ${this.name}`;
 };
