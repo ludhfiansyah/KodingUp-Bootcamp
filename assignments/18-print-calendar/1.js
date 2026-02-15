@@ -1,20 +1,23 @@
-/**
-
-* Print a monthly calendar (manual engine; no Date object).
-*
-* Reference:
-* Jan 1, 1800 was Wednesday.
-* Weekday index convention: 0=Sun ... 6=Sat
-*/
-
 'use strict';
 const readline = require('readline-sync');
+
+/**
+ * Print a monthly calendar (manual engine; no Date object).
+ *
+ * Reference:
+ * - Jan 1, 1800 was Wednesday.
+ * - Weekday index convention: 0=Sun ... 6=Sat
+ */
 
 /** Weekday index for Jan 1, 1800 (Wednesday). */
 const STARTDAY1800 = 3;
 
-/** Month names (1–12). */
-const nameOfTheMonths = {
+/**
+ * Enum-like mapping for month names (1–12).
+ * @readonly
+ * @enum {string}
+ */
+const NameOfTheMonths = {
   1: 'January',
   2: 'February',
   3: 'March',
@@ -28,81 +31,78 @@ const nameOfTheMonths = {
   11: 'November',
   12: 'December',
 };
+Object.freeze(NameOfTheMonths);
 
 /** Weekday labels in display order; index matches weekday convention. */
 const nameOfTheDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 /**
+ * Calendar "constructor function" holding a target year and month.
+ * @constructor
+ * @param {number} year - Full year (>= 1800).
+ * @param {number} month - Month number (1–12).
+ */
+function Calendar(year, month) {
+  this.year = year;
+  this.month = month;
+}
 
-* Check if a year is a leap year (Gregorian rules).
-* @param {number} year
-* @returns {boolean}
-  */
-function isLeapYear(year) {
+/**
+ * Check if a given year is a leap year (Gregorian rules).
+ * @param {number} year
+ * @returns {boolean}
+ */
+Calendar.prototype.isLeapYear = function (year) {
   return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
-}
+};
 
 /**
-
-* Get number of days in a month.
-* @param {number} year
-* @param {number} month - 1–12
-* @returns {number} 28–31
-  */
-function getDaysInMonth(year, month) {
-  let daysInMonth = 31;
-
-  if (month === 4 || month === 6 || month === 9 || month === 11) {
-    daysInMonth = 30;
-  }
-
-  if (month === 2) {
-    daysInMonth = isLeapYear(year) ? 29 : 28;
-  }
-
-  return daysInMonth;
-}
+ * Get number of days in a given month for a given year.
+ * @param {number} year
+ * @param {number} month - 1–12
+ * @returns {number} 28–31
+ */
+Calendar.prototype.getDaysInMonth = function (year, month) {
+  if (month === 4 || month === 6 || month === 9 || month === 11) return 30;
+  if (month === 2) return this.isLeapYear(year) ? 29 : 28;
+  return 31;
+};
 
 /**
+ * Total days from Jan 1, 1800 up to the first day of (this.year, this.month).
+ * @returns {number}
+ */
+Calendar.prototype.getTotalDays = function () {
+  let total = 0;
 
-* Total days from Jan 1, 1800 up to the first day of (year, month).
-* @param {number} year
-* @param {number} month - 1–12
-* @returns {number}
-  */
-function getTotalDays(year, month) {
-  let totalOfDays = 0;
-
-  for (let y = 1800; y < year; y++) {
-    totalOfDays += isLeapYear(y) ? 366 : 365;
+  // Add all full years from 1800 to (this.year - 1)
+  for (let y = 1800; y < this.year; y++) {
+    total += this.isLeapYear(y) ? 366 : 365;
   }
 
-  for (let m = 1; m < month; m++) {
-    totalOfDays += getDaysInMonth(year, m);
+  // Add all full months from Jan to (this.month - 1) in this.year
+  for (let m = 1; m < this.month; m++) {
+    total += this.getDaysInMonth(this.year, m);
   }
 
-  return totalOfDays;
-}
+  return total;
+};
 
 /**
-
-* Weekday index (0–6) for the first day of (year, month).
-* @param {number} year
-* @param {number} month - 1–12
-* @returns {number} 0=Sun ... 6=Sat
-  */
-function getStartDayOfTheMonth(year, month) {
-  return (STARTDAY1800 + getTotalDays(year, month)) % 7;
-}
+ * Weekday index (0–6) for the first day of (this.year, this.month).
+ * @returns {number} 0=Sun ... 6=Sat
+ */
+Calendar.prototype.getStartDayOfTheMonth = function () {
+  return (STARTDAY1800 + this.getTotalDays()) % 7;
+};
 
 /**
-
-* Ask user for an integer input until valid.
-* @param {string} prompt
-* @param {(n:number)=>boolean} isValid
-* @param {string} errorMsg
-* @returns {number}
-  */
+ * Ask user for an integer input until valid.
+ * @param {string} prompt
+ * @param {(n:number)=>boolean} isValid
+ * @param {string} errorMsg
+ * @returns {number}
+ */
 function askInt(prompt, isValid, errorMsg) {
   while (true) {
     const value = Number(readline.question(prompt));
@@ -112,24 +112,22 @@ function askInt(prompt, isValid, errorMsg) {
 }
 
 /**
-
-* Create a blank cell with fixed width.
-* @param {number} cellWidth
-* @returns {string}
-  */
+ * Create a blank cell with fixed width.
+ * @param {number} cellWidth
+ * @returns {string}
+ */
 function blankCell(cellWidth) {
   return ' '.repeat(cellWidth);
 }
 
 /**
-
-* Format a day number into a fixed-width cell (right-aligned).
-* @param {number} day
-* @param {number} cellWidth
-* @returns {string}
-  */
+ * Format a day number into a fixed-width cell (right-aligned).
+ * @param {number} day
+ * @param {number} cellWidth
+ * @returns {string}
+ */
 function formatCell(day, cellWidth) {
-  const NUMBER_WIDTH = 3; // matches sample spacing
+  const NUMBER_WIDTH = 3;
   return (
     String(day).padStart(NUMBER_WIDTH, ' ') +
     ' '.repeat(cellWidth - NUMBER_WIDTH)
@@ -137,17 +135,15 @@ function formatCell(day, cellWidth) {
 }
 
 /**
-
-* Print the calendar for a given year and month.
-* @param {number} year
-* @param {number} month - 1–12
-* @returns {void}
-  */
-function printCalendar(year, month) {
+ * Print the calendar for the provided Calendar instance.
+ * @param {Calendar} calendar
+ * @returns {void}
+ */
+function printCalendar(calendar) {
   const GRID_WIDTH = 33;
   const CELL_WIDTH = 5;
 
-  const title = `${nameOfTheMonths[month]} ${year}`;
+  const title = `${NameOfTheMonths[calendar.month]} ${calendar.year}`;
   const leftPadding = Math.floor((GRID_WIDTH - title.length) / 2);
 
   console.log();
@@ -155,19 +151,22 @@ function printCalendar(year, month) {
   console.log('-'.repeat(GRID_WIDTH));
   console.log(nameOfTheDays.join('  '));
 
-  const startDay = getStartDayOfTheMonth(year, month);
-  const daysInMonth = getDaysInMonth(year, month);
+  const startDay = calendar.getStartDayOfTheMonth();
+  const daysInMonth = calendar.getDaysInMonth(calendar.year, calendar.month);
 
   let weekDayIndex = startDay;
   let line = '';
 
+  // Pad blanks before day 1
   for (let i = 0; i < startDay; i++) {
     line += blankCell(CELL_WIDTH);
   }
 
+  // Print all days
   for (let day = 1; day <= daysInMonth; day++) {
     line += formatCell(day, CELL_WIDTH);
 
+    // Saturday => flush line
     if (weekDayIndex === nameOfTheDays.length - 1) {
       console.log(line.trimEnd());
       line = '';
@@ -176,6 +175,7 @@ function printCalendar(year, month) {
     weekDayIndex = (weekDayIndex + 1) % 7;
   }
 
+  // Flush remaining days in last row
   if (line.trim().length > 0) {
     console.log(line.trimEnd());
   }
@@ -194,4 +194,5 @@ const inputMonth = askInt(
   'Invalid month. Please enter an integer between 1 and 12.',
 );
 
-printCalendar(inputYear, inputMonth);
+const calendar = new Calendar(inputYear, inputMonth);
+printCalendar(calendar);
