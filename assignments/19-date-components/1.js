@@ -153,12 +153,18 @@ class Tanggal {
 
   /** @returns {number} Minutes (0..59) in UTC. */
   getMinutes() {
-    return Math.floor(this._millisInDay / MILLISECONDS_IN_A_MINUTE) % MINUTES_IN_AN_HOUR;
+    return (
+      Math.floor(this._millisInDay / MILLISECONDS_IN_A_MINUTE) %
+      MINUTES_IN_AN_HOUR
+    );
   }
 
   /** @returns {number} Seconds (0..59) in UTC. */
   getSeconds() {
-    return Math.floor(this._millisInDay / MILLISECONDS_IN_A_SECOND) % SECONDS_IN_A_MINUTE;
+    return (
+      Math.floor(this._millisInDay / MILLISECONDS_IN_A_SECOND) %
+      SECONDS_IN_A_MINUTE
+    );
   }
 
   /** @returns {number} Milliseconds (0..999) in UTC. */
@@ -199,7 +205,10 @@ class Tanggal {
    */
   _decompose(totalDays) {
     const { year, remainingDaysAfterYears } = this._decomposeYear(totalDays);
-    const { month, remainingDaysAfterMonths } = this._decomposeMonth(year, remainingDaysAfterYears);
+    const { month, remainingDaysAfterMonths } = this._decomposeMonth(
+      year,
+      remainingDaysAfterYears,
+    );
     return { year, month, days: remainingDaysAfterMonths + 1 }; // +1 because day-of-month is 1-based.
   }
 
@@ -217,12 +226,16 @@ class Tanggal {
     // Handle days before 1970
     while (dayRemainder < 0) {
       year--;
-      dayRemainder += this._isLeapYear(year) ? DAYS_IN_LEAP_YEAR : DAYS_IN_NON_LEAP_YEAR;
+      dayRemainder += this._isLeapYear(year)
+        ? DAYS_IN_LEAP_YEAR
+        : DAYS_IN_NON_LEAP_YEAR;
     }
 
     // Handle days from 1970 onward
     while (true) {
-      const daysInYear = this._isLeapYear(year) ? DAYS_IN_LEAP_YEAR : DAYS_IN_NON_LEAP_YEAR;
+      const daysInYear = this._isLeapYear(year)
+        ? DAYS_IN_LEAP_YEAR
+        : DAYS_IN_NON_LEAP_YEAR;
       if (dayRemainder < daysInYear) break;
       dayRemainder -= daysInYear;
       year++;
@@ -304,15 +317,13 @@ while (true) {
 
   const tanggal = new Tanggal(inputMillis);
 
-  console.log('');
-  console.log('Year: ' + tanggal.getFullYear());
+  console.log('\nYear: ' + tanggal.getFullYear());
   console.log('Month: ' + tanggal.getMonth());
   console.log('Date: ' + tanggal.getDate());
   console.log('Hours: ' + tanggal.getHours());
   console.log('Minutes: ' + tanggal.getMinutes());
   console.log('Seconds: ' + tanggal.getSeconds());
   console.log('Milliseconds: ' + tanggal.getMilliseconds());
-  console.log('');
-  console.log('ISO 8601: ' + tanggal.toISOString());
+  console.log('\nISO 8601: ' + tanggal.toISOString());
   break;
 }
