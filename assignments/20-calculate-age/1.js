@@ -1,7 +1,9 @@
 'use strict';
 const readline = require('readline-sync');
 
-// Enum
+// Month enum uses human-friendly numbering (1-12).
+// When constructing a JavaScript Date, we will convert it to JS month index (0-11)
+// by subtracting 1 (because JS months are 0-based).
 const Month = Object.freeze({
   JANUARY: 1,
   FEBRUARY: 2,
@@ -17,16 +19,17 @@ const Month = Object.freeze({
   DECEMBER: 12,
 });
 
-// constants
+// Constants for leap-year calculation (Gregorian calendar rules).
 const GREGORIAN_INTERVAL = 400;
 const LEAP_YEAR_INTERVAL = 4;
 const CENTURY_INTERVAL = 100;
 
+// Validation bounds for month/date input.
 const FIRST_MONTH_OF_YEAR = Month.JANUARY;
 const LAST_MONTH_OF_YEAR = Month.DECEMBER;
-
 const FIRST_DATE_OF_MONTH = 1;
 
+// Lower bound for realistic birth years (can be adjusted if needed).
 const MIN_BIRTH_YEAR = 1900;
 
 /**
@@ -65,8 +68,10 @@ function getMaxDate(year, month) {
     case Month.SEPTEMBER:
     case Month.NOVEMBER:
       return 30;
+
     case Month.FEBRUARY:
       return isLeapYear(year) ? 29 : 28;
+
     default:
       return 31;
   }
@@ -108,6 +113,8 @@ function readStrictInt(prompt) {
       continue;
     }
 
+    // Ensure user typed a plain integer string.
+    // This prevents formats like "1e3" and also rejects leading zeros like "0010".
     if (String(num) !== raw) {
       console.log(
         'Invalid input format. Please type digits only (e.g., 2000).',
@@ -119,8 +126,10 @@ function readStrictInt(prompt) {
   }
 }
 
+// Collect user inputs.
 const name = readline.question('Enter name: ');
 
+// Read once for consistent validation (in case the year changes while running).
 const currentYear = new Date().getFullYear();
 
 let year;
@@ -149,6 +158,7 @@ let date;
 while (true) {
   const maxDate = getMaxDate(year, month);
   date = readStrictInt('Enter birth date: ');
+
   if (date < FIRST_DATE_OF_MONTH || date > maxDate) {
     console.log(
       `Invalid birth date, please input a correct date (1-${maxDate}).`,
@@ -160,13 +170,16 @@ while (true) {
 
 const person = {
   name,
+  // Convert to timestamp (ms). Note: JS month index is 0-based, so subtract 1.
   birthDate: new Date(year, month - 1, date).getTime(),
   getAge() {
     const now = new Date();
     const dob = new Date(this.birthDate);
 
+    // Start with the year difference...
     let age = now.getFullYear() - dob.getFullYear();
 
+    // ...then subtract 1 if the birthday hasn't happened yet this year.
     const hasHadBirthdayThisYear =
       now.getMonth() > dob.getMonth() ||
       (now.getMonth() === dob.getMonth() && now.getDate() >= dob.getDate());
