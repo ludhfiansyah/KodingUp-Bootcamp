@@ -1,0 +1,94 @@
+@use '../abstracts/' as *;
+@use 'sass:map';
+
+html {
+  box-sizing: border-box;
+
+  /* Targets Blink and Webkit Engine */
+  -webkit-font-smoothing: antialiased;
+
+  /* Targets Gecko Engine */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+By setting up the box-sizing: border-box on the html and
+having all elements inherit from it, we allow 3rd party
+CSS to override this behavior.
+*/
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: $font-stack-body;
+  font-size: $font-size-base-sm;
+  line-height: 1.4;
+  color: map.get($color-neutral, 500);
+  background-color: $color-white;
+
+  @include breakpoint(md) {
+    font-size: $font-size-base-md;
+  }
+}
+
+a {
+  color: $color-accent;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-stack-heading;
+  font-weight: 500;
+  line-height: 1.1;
+  color: map.get($color-neutral, 900);
+}
+
+h1 {
+  font-size: 42px;
+}
+h2 {
+  font-size: 36px;
+}
+
+@include breakpoint(md) {
+  h1 {
+    font-size: 60px;
+  }
+  h2 {
+    font-size: 50px;
+  }
+  h3 {
+    font-size: 42px;
+  }
+  h4 {
+    font-size: 40px;
+  }
+  h5 {
+    font-size: 36px;
+  }
+  h6 {
+    font-size: 32px;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: map.get($color-neutral, 200);
+  margin-bottom: 24px;
+}

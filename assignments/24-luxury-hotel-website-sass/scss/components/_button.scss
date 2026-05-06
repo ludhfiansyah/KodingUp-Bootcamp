@@ -1,0 +1,52 @@
+@use '../abstracts/' as *;
+@use 'sass:map';
+
+.btn {
+  display: inline-block;
+  border-radius: 8px;
+  font-weight: 500;
+  line-height: 1.125;
+  text-align: center;
+
+  @include breakpoint(md) {
+    line-height: 1.4;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  // -- Size modifiers
+
+  &--md {
+    padding: 14px 20px;
+    font-size: 16px;
+  }
+  &--sm {
+    padding: 9px 16px;
+    font-size: 14px;
+  }
+  &--icon-md {
+    padding: 14px;
+  }
+  &--icon-sm {
+    padding: 9px;
+  }
+
+  // -- Color modifiers
+  &--black {
+    background-color: $color-black;
+    border: 1px solid $color-black;
+    color: $color-white;
+  }
+  &--white {
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    color: map.get($color-neutral, 800);
+  }
+
+  // -- Layout modifiers
+  &--expanded {
+    display: block;
+  }
+}

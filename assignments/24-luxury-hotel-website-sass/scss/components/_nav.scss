@@ -1,0 +1,44 @@
+@use 'sass:map';
+@use '../abstracts/' as *;
+
+.nav {
+  background-color: $color-white;
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+  }
+
+  &__item {
+    padding: 10px 16px;
+  }
+
+  &__item a {
+    color: map.get($color-neutral, 800);
+  }
+
+  &__divider {
+    align-self: stretch;
+    width: 1px;
+    background-color: $color-border;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+}

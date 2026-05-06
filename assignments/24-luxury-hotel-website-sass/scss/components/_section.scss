@@ -1,0 +1,30 @@
+@use 'sass:map';
+@use '../abstracts/' as *;
+
+.section {
+  padding: 40px 0;
+
+  @include breakpoint(md) {
+    padding: 60px 0;
+  }
+
+  // Color-modifier
+
+  &--white {
+    background-color: $color-white;
+  }
+
+  &--muted {
+    background-color: map.get($color-neutral, 50);
+  }
+
+  // Element
+
+  &__header {
+    max-width: 624px;
+    margin-bottom: 48px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+}
