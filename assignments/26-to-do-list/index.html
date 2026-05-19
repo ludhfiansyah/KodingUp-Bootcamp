@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="tdl">
+        <div class="tdl__frame">
+            <div class="tdl__heading">
+                <h2 class="tdl__task-title">Todolist</h2>
+                <div class="tdl__indicator">
+                    <div class="tdl__card tdl__card-task">
+                        <img src="./img/clipboard-list.svg" alt="clipboard-icon" class="tdl__image">
+                        <div class="tdl__info">
+                            <p class="tdl__info-type">Task</p>
+                            <p class="tdl__info-number">0</p>
+                        </div>
+                    </div>
+                    <div class="tdl__card tdl__card-active">
+                        <img src="./img/layout-list.svg" alt="clipboard-icon" class="tdl__image">
+                        <div class="tdl__info">
+                            <p class="tdl__info-type">Active</p>
+                            <p class="tdl__info-number">0</p>
+                        </div>
+                    </div>
+                    <div class="tdl__card tdl__card-done">
+                        <img src="./img/square-check.svg" alt="clipboard-icon" class="tdl__image">
+                        <div class="tdl__info">
+                            <p class="tdl__info-type">Done</p>
+                            <p class="tdl__info-number">0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tdl__input-frame">
+                <form action="" class="tdl__input-text">
+                    <img src="./img/pen-line.svg" alt="" class="">
+                    <input type="text" id="ntask" name="ntask" value="" placeholder="Add a new task..."
+                        class="tdl__form">
+                </form>
+                <button class="btn" type="button">
+                    <img src="./img/plus-grey.svg" alt="add icon">
+                    <span>Add</span>
+                </button>
+            </div>
+            <div class="tdl__data">
+                <div class="tdl__data-container">
+                    <ul class="tdl__data-type">
+                        <li class="selected">All</li>
+                        <li class="non-selected">Active</li>
+                        <li class="non-selected">Completed</li>
+                    </ul>
+                </div>
+                <div class="tdl__data-detail">
+                    <div class="no-data">
+                        <div class="no-data__icon">
+                            <img src="./img/layout-list-grey.svg" alt="">
+                        </div>
+                        <div class="no-data__text">
+                            <p class="no-data__text-title">No tasks yet</p>
+                            <p class="no-data__text-subtitle">Add your first task above to get started. Stay productive!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script/index.js"></script>
+</body>
+
+</html>

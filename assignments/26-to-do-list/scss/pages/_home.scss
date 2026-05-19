@@ -1,0 +1,137 @@
+@use '../abstracts' as *;
+
+.tdl {
+  background-color: $color-background;
+  padding: 85px 300px;
+
+  &__frame {
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $color-fill1;
+    border: 2px solid $color-white;
+    border-radius: 24px;
+  }
+
+  &__heading {
+    padding: 18px 18px 10px 18px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  &__task-title {
+    font-size: $font-size-base-large;
+    font-weight: 600;
+  }
+
+  &__indicator {
+    display: flex;
+    gap: 6px;
+  }
+
+  &__card {
+    width: 184px;
+    padding: 12px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    &-task {
+      background: linear-gradient(to top, #b264fd, #cf8bf9);
+      color: #f2c7ff;
+    }
+
+    &-active {
+      background: linear-gradient(to top, #1865d5, #5f98ff);
+      color: #82d0ff;
+    }
+
+    &-done {
+      background: linear-gradient(to top, #4d9a44, #85e980);
+      color: #d8f4d6;
+    }
+  }
+
+  &__image {
+    width: 24px;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+
+    &-type {
+      padding-top: 20px;
+      text-align: left;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    &-number {
+      font-size: 40px;
+      font-weight: 600;
+      line-height: 1;
+    }
+  }
+
+  &__input-frame {
+    width: 100%;
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__input-text {
+    width: 490px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__form {
+    width: 100%;
+    border: none;
+    background-color: $color-fill1;
+  }
+
+  &__data {
+    width: 100%;
+    padding: 0 8px 8px 8px;
+
+    &-container {
+      height: 60px;
+      padding: 12px;
+      background-color: $color-white;
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+      border: 1px solid $color-accent;
+    }
+
+    &-type {
+        width: 242px;
+        height: 36px;
+        padding: 2px;
+        font-size: 16px;
+        font-weight: 500;
+        background-color: $color-fill2;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+    }
+
+    &-detail {
+      height: 359px;
+      padding: 18px;
+      overflow-y: auto;
+      background-color: $color-white;
+      border-bottom-left-radius: 24px;
+      border-bottom-right-radius: 24px;
+      border: 1px solid $color-accent;
+      border-top: none;
+    }
+  }
+}

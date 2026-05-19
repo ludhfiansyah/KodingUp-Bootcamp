@@ -1,0 +1,35 @@
+@use '../abstracts' as *;
+
+.btn {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  display: flex;
+  gap: 6px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  color: #c4c4c4;
+
+  &:hover {
+    background-color: $color-black;
+    color: $color-white;
+    cursor: pointer;
+  }
+}
+
+.non-selected {
+  height: 100%;
+  color: $color-non-selected;
+  padding: 5px 14px;
+  text-align: center;
+}
+
+.selected {
+  height: 100%;
+  color: $color-black;
+  padding: 5px 14px;
+  text-align: center;
+  background-color: $color-white;
+  border-radius: 7px;
+}

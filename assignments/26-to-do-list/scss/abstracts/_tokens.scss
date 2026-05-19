@@ -1,0 +1,18 @@
+@use 'sass:map';
+
+$color-background: #ececec;
+$color-fill1: #f9f9f9;
+$color-fill2: #f4f4f4;
+$color-stroke: #ffffff;
+$color-accent: #efefef;
+
+$color-black: #1e1e1e;
+$color-white: #ffffff;
+$color-non-selected: #a4a4a4;
+
+$font-stack: Inter, Roboto, Helvetica, Arial, sans-serif;
+
+$font-size-base-small: 14px;
+$font-size-base-medium: 16px;
+$font-size-base-large: 24px;
+$font-size-base-xlarge: 40px;

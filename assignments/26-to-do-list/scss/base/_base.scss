@@ -1,0 +1,34 @@
+@use '../abstracts/' as *;
+@use 'sass:map';
+
+html {
+  box-sizing: border-box;
+
+  /* Targets Blink and Webkit Engine */
+  -webkit-font-smoothing: antialiased;
+
+  /* Targets Gecko Engine */
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/*
+By setting up the box-sizing: border-box on the html and
+having all elements inherit from it, we allow 3rd party
+CSS to override this behavior.
+*/
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: $font-stack;
+  font-size: $font-size-base-small;
+  background-color: $color-background;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
